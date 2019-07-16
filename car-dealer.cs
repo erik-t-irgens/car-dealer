@@ -3,13 +3,20 @@ using System.Collections.Generic;
 
 class Car
 {
-  public string makeModel;
-  public int price;
-  public int miles;
+  public string MakeModel;
+  public int Price;
+  public int Miles;
+
+  public Car(string makeModel, int price, int miles)
+  {
+    MakeModel = makeModel;
+    Price = price;
+    Miles = miles;
+  }
 
   public bool WorthBuying(int maxPrice)
   {
-    return (price < maxPrice);
+    return (Price < maxPrice);
   }
 }
 
@@ -17,25 +24,10 @@ public class Program
 {
   public static void Main()
   {
-    Car volkswagen = new Car();
-    volkswagen.makeModel = "1974 Volkswagen Thing";
-    volkswagen.price = 1100;
-    volkswagen.miles = 368792;
-
-    Car yugo = new Car();
-    yugo.makeModel = "1980 Yugo Koral";
-    yugo.price = 700;
-    yugo.miles = 56000;
-
-    Car ford = new Car();
-    ford.makeModel = "1988 Ford Country Squire";
-    ford.price = 1400;
-    ford.miles = 239001;
-
-    Car amc = new Car();
-    amc.makeModel = "1976 AMC Pacer";
-    amc.price = 400;
-    amc.miles = 198000;
+    Car volkswagen = new Car("1974 Volkswagen Thing", 1100, 368792);
+    Car yugo = new Car("1980 Yugo Koral", 700, 56000);
+    Car ford = new Car("1988 Ford Country Squire", 1400, 239001);
+    Car amc = new Car("1976 AMC Pacer", 400, 198000);
 
     List<Car> Cars = new List<Car>() { volkswagen, yugo, ford, amc };
 
@@ -52,11 +44,10 @@ public class Program
         CarsMatchingSearch.Add(automobile);
       }
     }
-    
 
     foreach(Car automobile in CarsMatchingSearch)
     {
-      Console.WriteLine(automobile.makeModel);
+      Console.WriteLine(automobile.MakeModel);
     }
   }
 }
