@@ -21,6 +21,10 @@ class Car
   {
     return (Price < maxPrice);
   }
+  public bool WorthDriving(int maxMiles)
+  {
+    return (Miles < maxMiles);
+  }
 }
 // What calls the logic in the backend (above, I assume) and interacts with user.
 public class Program
@@ -38,15 +42,33 @@ public class Program
     Console.WriteLine("Enter maximum price: ");
     string stringMaxPrice = Console.ReadLine();
     int maxPrice = int.Parse(stringMaxPrice);
+
+    Console.WriteLine("Enter maximum mileage: ");
+    string stringMaxMiles = Console.ReadLine();
+    int maxMiles = int.Parse(stringMaxMiles);
+
     // Empty list to be filled with search criteria.
     List<Car> CarsMatchingSearch = new List<Car>(0);
 
     // foreach loop that adds cars that meet price criteria to above list
+   
+    
+
     foreach (Car automobile in Cars)
     {
-      if (automobile.WorthBuying(maxPrice))
+      if (automobile.WorthBuying(maxPrice) && automobile.WorthDriving(maxMiles))
       {
-        CarsMatchingSearch.Add(automobile);
+       CarsMatchingSearch.Add(automobile); 
+      } else {
+          Console.WriteLine("No cars are available for purchase under your search critera.");
+          Console.WriteLine("Would you like to make another query?");
+          string answer = Console.ReadLine();
+          if (answer == "yes" || answer == "Yes" || answer == "YES")
+          {
+              Main();
+          } else {
+              Console.WriteLine("Goodbye!");
+          }
       }
     }
     // foreach that displays the search critera above to user.
